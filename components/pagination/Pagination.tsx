@@ -17,7 +17,7 @@ import { booleanType, arrayType, stringType, functionType, someType } from '../_
 import useStyle from './style';
 
 export const paginationProps = () => ({
-  total: Number,
+  total: [Number, String],
   defaultCurrent: Number,
   disabled: booleanType(),
   current: Number,
@@ -131,6 +131,10 @@ export default defineComponent({
       return { prevIcon, nextIcon, jumpPrevIcon, jumpNextIcon };
     };
 
+    const transformedTotal = computed(() =>
+      Number.isNaN(Number(props.total)) ? 0 : Number(props.total),
+    );
+
     return () => {
       const {
         itemRender = slots.itemRender,
@@ -162,7 +166,7 @@ export default defineComponent({
         itemRender,
       };
 
-      return wrapSSR(<VcPagination {...paginationProps} />);
+      return wrapSSR(<VcPagination {...{ ...paginationProps, total: transformedTotal.value }} />);
     };
   },
 });
