@@ -187,7 +187,9 @@ const List = defineComponent({
         ...((props.pagination as PaginationConfig) || {}),
       };
 
-      const largestPage = Math.ceil(pp.total / pp.pageSize);
+      const largestPage = Math.ceil(
+        Number.isNaN(Number(pp.total)) ? 0 : Number(pp.total) / pp.pageSize,
+      );
       if (pp.current > largestPage) {
         pp.current = largestPage;
       }

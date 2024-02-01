@@ -36,7 +36,9 @@ export default function usePagination(
   const pagination = computed(() =>
     paginationRef.value && typeof paginationRef.value === 'object' ? paginationRef.value : {},
   );
-  const paginationTotal = computed(() => pagination.value.total || 0);
+  const paginationTotal = computed(() =>
+    Number.isNaN(Number(pagination.value.total)) ? 0 : Number(pagination.value.total),
+  );
   const [innerPagination, setInnerPagination] = useState<{
     current?: number;
     pageSize?: number;
