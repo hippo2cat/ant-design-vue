@@ -151,6 +151,7 @@ export default defineComponent({
       // });
     };
     const iframeDemoKey = computed(() => {
+      console.log(props);
       return (
         props.jsfiddle &&
         props.jsfiddle.title &&

@@ -8,6 +8,9 @@
   <template v-else-if="iframeName === 'sider'">
     <Side />
   </template>
+  <template v-else-if="iframeName === 'custom-sider-icon'">
+    <CustomSiderIcon></CustomSiderIcon>
+  </template>
   <demo-sort v-else :cols="1">
     <basic />
     <top />
@@ -18,6 +21,7 @@
     <responsive />
     <FixedSider />
     <Fixed />
+    <CustomSiderIcon></CustomSiderIcon>
   </demo-sort>
 </template>
 
@@ -31,6 +35,7 @@ import Top from './top.vue';
 import FixedSider from './fixed-sider.vue';
 import Fixed from './fixed.vue';
 import Side from './side.vue';
+import CustomSiderIcon from './custom-sider-icon.vue';
 
 import CN from '../index.zh-CN.md';
 import US from '../index.en-US.md';
@@ -49,6 +54,7 @@ export default defineComponent({
     FixedSider,
     Fixed,
     Side,
+    CustomSiderIcon,
   },
   props: {
     iframeName: String,
@@ -61,6 +67,7 @@ export default defineComponent({
             'fixed-sider': '/iframe/layout/#fixed-sider',
             'fixed-header': '/iframe/layout/#fixed-header',
             sider: '/iframe/layout/#sider',
+            'custom-sider-icon': '/iframe/layout/#custom-sider-icon',
           }
         : {},
     );

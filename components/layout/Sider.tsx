@@ -8,8 +8,10 @@ import {
   onMounted,
   onBeforeUnmount,
   provide,
+  computed,
 } from 'vue';
 import PropTypes from '../_util/vue-types';
+import type { VueNode } from '../_util/type';
 import { tuple } from '../_util/type';
 import initDefaultProps from '../_util/props-util/initDefaultProps';
 import isNumeric from '../_util/isNumeric';
@@ -48,6 +50,8 @@ export const siderProps = () => ({
   theme: PropTypes.oneOf(tuple('light', 'dark')).def('dark'),
   onBreakpoint: Function as PropType<(broken: boolean) => void>,
   onCollapse: Function as PropType<(collapsed: boolean, type: CollapseType) => void>,
+  expandedIcon: Function as PropType<() => VueNode>,
+  collapsedIcon: Function as PropType<() => VueNode>,
 });
 
 export type SiderProps = Partial<ExtractPropTypes<ReturnType<typeof siderProps>>>;
@@ -160,6 +164,13 @@ export default defineComponent({
       handleSetCollapsed(!collapsed.value, 'clickTrigger');
     };
 
+    const finalExpandedIcon = computed(() =>
+      props.expandedIcon ? props.expandedIcon() : <RightOutlined></RightOutlined>,
+    );
+    const finalCollapsedIcon = computed(() =>
+      props.collapsedIcon ? props.collapsedIcon() : <LeftOutlined></LeftOutlined>,
+    );
+
     return () => {
       const pre = prefixCls.value;
       const {
@@ -189,8 +200,8 @@ export default defineComponent({
           </span>
         ) : null;
       const iconObj = {
-        expanded: reverseArrow ? <RightOutlined /> : <LeftOutlined />,
-        collapsed: reverseArrow ? <LeftOutlined /> : <RightOutlined />,
+        expanded: reverseArrow ? finalExpandedIcon.value : finalCollapsedIcon.value,
+        collapsed: reverseArrow ? finalCollapsedIcon.value : finalExpandedIcon.value,
       };
       const status = collapsed.value ? 'collapsed' : 'expanded';
       const defaultTrigger = iconObj[status];

@@ -99,6 +99,8 @@ The sidebar.
 | trigger | specify the customized trigger, set to null to hide the trigger | string\|slot | - |  |
 | width | width of the sidebar | number\|string | 200 |  |
 | zeroWidthTriggerStyle | to customize the styles of the special trigger that appears when `collapsedWidth` is 0 | object | - | 1.5.0 |
+| expandedIcon | custom expaneded icon | () => vnode | - |  |
+| collapsedIcon | custom collapsed icon | () => vnode | - |  |
 
 ### Events
 
