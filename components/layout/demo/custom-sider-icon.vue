@@ -24,6 +24,12 @@ CustomSiderIcon
       :expanded-icon="expandedIcon"
       :collapsed-icon="collapsedIcon"
     >
+      <!-- <template #expandedIcon>
+        <double-right-outlined></double-right-outlined>
+      </template>
+      <template #collapsedIcon>
+        <double-left-outlined></double-left-outlined>
+      </template> -->
       <div class="logo" />
       <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
         <a-menu-item key="1">

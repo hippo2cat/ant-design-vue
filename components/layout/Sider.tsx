@@ -20,6 +20,7 @@ import RightOutlined from '@ant-design/icons-vue/RightOutlined';
 import LeftOutlined from '@ant-design/icons-vue/LeftOutlined';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 import { SiderCollapsedKey, SiderHookProviderKey } from './injectionKey';
+import { isFunction } from 'lodash';
 
 const dimensionMaxMap = {
   xs: '479.98px',
@@ -164,12 +165,24 @@ export default defineComponent({
       handleSetCollapsed(!collapsed.value, 'clickTrigger');
     };
 
-    const finalExpandedIcon = computed(() =>
-      props.expandedIcon ? props.expandedIcon() : <RightOutlined></RightOutlined>,
-    );
-    const finalCollapsedIcon = computed(() =>
-      props.collapsedIcon ? props.collapsedIcon() : <LeftOutlined></LeftOutlined>,
-    );
+    const finalExpandedIcon = computed(() => {
+      if (slots.expandedIcon) {
+        return slots.expandedIcon();
+      }
+      if (props.expandedIcon) {
+        return props.expandedIcon();
+      }
+      return <RightOutlined></RightOutlined>;
+    });
+    const finalCollapsedIcon = computed(() => {
+      if (slots.collapsedIcon) {
+        return slots.collapsedIcon();
+      }
+      if (props.collapsedIcon) {
+        return props.collapsedIcon();
+      }
+      return <LeftOutlined></LeftOutlined>;
+    });
 
     return () => {
       const pre = prefixCls.value;
