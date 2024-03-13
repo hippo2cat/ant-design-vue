@@ -20,7 +20,6 @@ import RightOutlined from '@ant-design/icons-vue/RightOutlined';
 import LeftOutlined from '@ant-design/icons-vue/LeftOutlined';
 import useConfigInject from '../config-provider/hooks/useConfigInject';
 import { SiderCollapsedKey, SiderHookProviderKey } from './injectionKey';
-import { isFunction } from 'lodash';
 
 const dimensionMaxMap = {
   xs: '479.98px',
