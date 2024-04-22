@@ -24,9 +24,9 @@ Custom Field Names
   />
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, Ref } from 'vue';
 import type { CascaderProps } from 'ant-design-vue';
-const options: CascaderProps['options'] = [
+const options: Ref<CascaderProps['options']> = ref([
   {
     code: 'zhejiang',
     name: 'Zhejiang',
@@ -59,6 +59,6 @@ const options: CascaderProps['options'] = [
       },
     ],
   },
-];
+]);
 const value = ref<string[]>([]);
 </script>

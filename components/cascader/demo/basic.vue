@@ -19,9 +19,9 @@ Cascade selection box for selecting province/city/district.
   <a-cascader v-model:value="value" :options="options" placeholder="Please select" />
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, Ref } from 'vue';
 import type { CascaderProps } from 'ant-design-vue';
-const options: CascaderProps['options'] = [
+const options: Ref<CascaderProps['options']> = ref([
   {
     value: 'zhejiang',
     label: 'Zhejiang',
@@ -54,6 +54,6 @@ const options: CascaderProps['options'] = [
       },
     ],
   },
-];
+]);
 const value = ref<string[]>([]);
 </script>
